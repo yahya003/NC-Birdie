@@ -8,6 +8,7 @@ import SignUp from './Components/SignUp';
 import Captured from './Components/Captured';
 import Profile from './Components/Profile';
 
+
 function App() {
   return (
     <BrowserRouter>

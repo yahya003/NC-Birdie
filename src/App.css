@@ -52,7 +52,8 @@ nav {
   background: brown;
   box-shadow: 0 5px 10px #ccc;
   min-width: 320px;
-  padding-bottom: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 
@@ -88,7 +89,7 @@ nav a {
   width: 250px;
   margin-top: 20px;
   margin-bottom: 20px;
-  margin-right: 45px;
+  margin-right: 42px;
   padding: 3px;
 }
 
