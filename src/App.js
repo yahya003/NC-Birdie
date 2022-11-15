@@ -6,6 +6,7 @@ import Home from './Components/Home';
 import SignIn from './Components/SignIn';
 import SignUp from './Components/SignUp';
 import Captured from './Components/Captured';
+import Profile from './Components/Profile';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         <Route path="/home" element={<Home/>}></Route>
         <Route path="/capture"></Route>
         <Route path="/captured" element={<Captured/>}></Route>
-        <Route path="/profile"></Route>
+        <Route path="/profile" element={<Profile/>}></Route>
       </Routes>
       </div>
     </BrowserRouter>
