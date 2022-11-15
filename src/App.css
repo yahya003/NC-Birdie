@@ -38,7 +38,7 @@
 }
 
 .header-background {
-  padding: 5px;
+  padding: 10px;
   color: white;
   background-color: brown;
 }
@@ -79,3 +79,31 @@ nav a {
 .captureTitle {
   margin-top: 50px;  
 }
+
+.signInPage {
+  margin-top: 50px;
+}
+
+#email {
+  width: 250px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 45px;
+  padding: 3px;
+}
+
+#password {
+  width: 250px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 40px;
+  padding: 3px;
+}
+
+.signIn {
+  padding: 6px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+

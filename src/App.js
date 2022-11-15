@@ -1,8 +1,9 @@
 import './App.css';
 import Header from './Components/Header';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navigation from './Navigation';
+import Navigation from './Components/Navigation';
 import Home from './Components/Home';
+import SignIn from './Components/SignIn';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
         <Header/>
         <Navigation/>
       <Routes>
-        <Route path="/"></Route>
+        <Route path="/" element={<SignIn/>}></Route>
         <Route path="/home" element={<Home/>}></Route>
         <Route path="/capture"></Route>
         <Route path="/captured"></Route>
