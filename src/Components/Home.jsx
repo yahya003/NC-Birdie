@@ -1,8 +1,8 @@
 const Home = () => {
     return (
         <>
-          <h1 className="captureTitle">Welcome Back</h1>
-          <h2 className="captureTitle">Birds left to capture</h2>
+          <h2 className="captureTitle">Welcome Back</h2>
+          <h3 className="captureTitle">Birds left to capture</h3>
         </>
     )
 }
