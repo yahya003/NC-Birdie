@@ -7,7 +7,7 @@ const SignIn = () => {
         <h1>Sign in</h1>
         <form id="form" >
           <label htmlFor="email">Username: </label>
-            <input placeholder="email" id="email" required/>
+            <input id="email" required/>
             <br/>
     
           <label htmlFor="password">Password: </label>
@@ -17,7 +17,7 @@ const SignIn = () => {
         <button className="signIn">Sign in</button>
         <br/>
 
-        
+        <NavLink to ="/signup">Dont have an account? Sign Up</NavLink>
         </div>
       )
 }
