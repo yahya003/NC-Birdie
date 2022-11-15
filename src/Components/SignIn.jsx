@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom"
 const SignIn = () => {
     return (
         <div className="signInPage">
-
         <h1>Sign in</h1>
         <form id="form" >
           <label htmlFor="email">Username: </label>

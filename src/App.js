@@ -5,6 +5,7 @@ import Navigation from './Components/Navigation';
 import Home from './Components/Home';
 import SignIn from './Components/SignIn';
 import SignUp from './Components/SignUp';
+import Captured from './Components/Captured';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Route path="/signup" element={<SignUp/>}></Route>
         <Route path="/home" element={<Home/>}></Route>
         <Route path="/capture"></Route>
-        <Route path="/captured"></Route>
+        <Route path="/captured" element={<Captured/>}></Route>
         <Route path="/profile"></Route>
       </Routes>
       </div>
