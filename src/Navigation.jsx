@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 const Navigation = () => {
    return (
     <nav className="bar" >
-        <NavLink to = "/" className={({ isActive }) => (isActive ? "link-active" : "link")} >
+        <NavLink to = "/home" className={({ isActive }) => (isActive ? "link-active" : "link")} >
            Home
         </NavLink>
 
