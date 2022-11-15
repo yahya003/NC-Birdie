@@ -42,3 +42,36 @@
   color: white;
   background-color: brown;
 }
+
+nav {
+  margin-left: 0px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: brown;
+  box-shadow: 0 5px 10px #ccc;
+  min-width: 320px;
+  padding-bottom: 5px;
+}
+
+
+nav a {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 100%;
+  text-decoration: none;
+}
+
+
+.link {
+  color: white;
+}
+
+
+.link-active {
+  color: black;
+  background: orange;
+}
