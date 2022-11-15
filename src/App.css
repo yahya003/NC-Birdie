@@ -101,17 +101,12 @@ nav a {
   padding: 3px;
 }
 
-.signIn {
-  padding: 8px;
-  margin-top: 10px;
-  margin-bottom: 30px;
-}
 
 .signUpPage {
   margin-top: 50px;
 }
 
-.signUp {
+.button {
   padding: 8px;
   margin-top: 10px;
   margin-bottom: 30px;

@@ -13,7 +13,7 @@ const SignUp = () => {
             <input type="password"  id="password"  required /> 
           </form>
 
-        <button className="signUp">Sign Up</button>
+        <button className="button">Sign Up</button>
         <br/>
         <NavLink to ="/">Already have an account? Log In</NavLink>
         </div>
