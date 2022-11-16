@@ -2,6 +2,25 @@
   text-align: center;
 }
 
+.captured-card {
+  margin-bottom: 1em;
+  margin-left: 0.9em;
+  margin-right: 0.9em;
+}
+
+.captured-card-birdname {
+  margin-bottom: 0.1em;
+}
+
+.all-birds {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 1.5rem;
+  margin-top: 1em;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -111,4 +130,3 @@ nav a {
   margin-top: 10px;
   margin-bottom: 30px;
 }
-
