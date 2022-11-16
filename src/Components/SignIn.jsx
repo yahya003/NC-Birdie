@@ -8,14 +8,11 @@ const SignIn = () => {
           <label htmlFor="email">Username: </label>
             <input id="email" required/>
             <br/>
-    
           <label htmlFor="password">Password: </label>
             <input type="password" id="password"  required /> 
         </form>
-
         <button className="button">Sign in</button>
         <br/>
-
         <NavLink to ="/signup">Dont have an account? Sign Up</NavLink>
         </div>
       )
