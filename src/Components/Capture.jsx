@@ -1,17 +1,27 @@
 import "babel-polyfill";
+import silhoute from "../emptyBird.png";
 import * as tf from "@tensorflow/tfjs";
 import { MobileNet } from "./mobilenet";
 import $ from "jquery";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 window.$ = $;
 
 const Capture = () => {
+  const [birdieImage, setbirdieImage] = useState("");
+  const [birdieName, setbirdieName] = useState("");
+  const navigate = useNavigate();
+
+  const addToCaptured = (e) => {
+    e.preventDefault();
+    navigate("/captured", { state: { birdieName, birdieImage } });
+  };
   const findBird = (e) => {
     e.preventDefault();
     const idBtn = $("#identifyBtn");
     const results = $("#results");
 
     const hiddenImage = $("#birdImage");
-
     const fileUpload = $("#fileUpload");
 
     const mobileNet = new MobileNet();
@@ -31,6 +41,7 @@ const Capture = () => {
       const reader = new FileReader();
 
       reader.addEventListener("load", () => {
+        setbirdieImage(reader.result);
         hiddenImage[0].src = reader.result;
       });
       reader.readAsDataURL(fileUpload.prop("files")[0]);
@@ -46,12 +57,16 @@ const Capture = () => {
         topK.forEach((ele) => {
           res += ele.label + "</br>";
         });
-
+        const birdieImage = results.html(res);
+        setbirdieName(
+          birdieImage[0].innerText
+        );
         results.html(res);
         idBtn.prop("disabled", false);
       };
     });
   };
+console.log(birdieName)
   return (
     <>
       <link
@@ -98,6 +113,15 @@ const Capture = () => {
                 Identify
               </button>
             </form>
+            {birdieName && (
+              <button
+                onClick={(e) => {
+                  addToCaptured(e);
+                }}
+              >
+                click to add to captured
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -106,7 +130,13 @@ const Capture = () => {
         <div className="row">
           <div className="col-md-8" id="results"></div>
           <div className="col-md-4">
-            <img height="224px" width="224px" id="birdImage" />
+            <img
+              height="224px"
+              width="224px"
+              id="birdImage"
+              alt="bird img"
+              src={silhoute}
+            />
           </div>
         </div>
       </div>
