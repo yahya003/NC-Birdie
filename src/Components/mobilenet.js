@@ -7,7 +7,9 @@ const PREPROCESS_DIVISOR = tf.scalar(255 / 2);
 export class MobileNet {
 
   async load() {
-    this.model = await tf.loadGraphModel("/dist/web_model/model.json");
+    this.model = await tf.loadGraphModel(
+      process.env.PUBLIC_URL + "/web_model/model.json"
+    );
   }
 
   dispose() {

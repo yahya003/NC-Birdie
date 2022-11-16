@@ -7,45 +7,50 @@ window.$ = $;
 const Capture = () => {
   const findBird = (e) => {
     e.preventDefault();
-      const idBtn = $("#identifyBtn");
-      const results = $("#results");
+    const idBtn = $("#identifyBtn");
+    const results = $("#results");
 
-      const hiddenImage = $("#birdImage");
+    const hiddenImage = $("#birdImage");
 
-      const fileUpload = $("#fileUpload");
+    const fileUpload = $("#fileUpload");
 
-      const mobileNet = new MobileNet();
-      mobileNet.load().then(() => {
+    const mobileNet = new MobileNet();
+    mobileNet
+      .load()
+      .then(() => {
         console.log("loaded");
         idBtn.prop("disabled", false);
-      }).catch((err)=>{console.log(err)})
-
-      idBtn.on("click", (evt) => {
-        evt.preventDefault();
-        idBtn.prop("disabled", true);
-        const reader = new FileReader();
-
-        reader.addEventListener("load", () => {
-          hiddenImage[0].src = reader.result;
-        });
-        reader.readAsDataURL(fileUpload.prop("files")[0]);
-
-        const bird = document.getElementById("birdImage");
-        bird.onload = async () => {
-          bird.width = "224";
-          bird.height = "224";
-          const image = tf.browser.fromPixels(bird);
-          let result = mobileNet.predict(image);
-          const topK = mobileNet.getTopKClasses(result, 1);
-          var res = "";
-          topK.forEach((ele) => {
-            res += ele.label + "</br>";
-          });
-
-          results.html(res);
-          idBtn.prop("disabled", false);
-        };
+      })
+      .catch((err) => {
+        console.log(err);
       });
+
+    idBtn.on("click", (evt) => {
+      evt.preventDefault();
+      idBtn.prop("disabled", true);
+      const reader = new FileReader();
+
+      reader.addEventListener("load", () => {
+        hiddenImage[0].src = reader.result;
+      });
+      reader.readAsDataURL(fileUpload.prop("files")[0]);
+
+      const bird = document.getElementById("birdImage");
+      bird.onload = async () => {
+        bird.width = "224";
+        bird.height = "224";
+        const image = tf.browser.fromPixels(bird);
+        let result = mobileNet.predict(image);
+        const topK = mobileNet.getTopKClasses(result, 1);
+        var res = "";
+        topK.forEach((ele) => {
+          res += ele.label + "</br>";
+        });
+
+        results.html(res);
+        idBtn.prop("disabled", false);
+      };
+    });
   };
   return (
     <>
@@ -59,7 +64,14 @@ const Capture = () => {
             <form>
               <div className="form-group mb-3">
                 <label htmlFor="fileUpload">Upload a bird's photo</label>
-                <input className="form-control" id="fileUpload" type="file" />
+                <input
+                  className="form-control"
+                  id="fileUpload"
+                  type="file"
+                  onChange={(e) => {
+                    findBird(e);
+                  }}
+                />
               </div>
               <div className="form-group mb-3">
                 <label htmlFor="birdUrl">Or paste in a URL</label>
@@ -67,6 +79,9 @@ const Capture = () => {
                   className="form-control"
                   id="birdUrl"
                   placeholder="Paste URL here"
+                  onChange={(e) => {
+                    findBird(e);
+                  }}
                 />
               </div>
               <button id="clearAllBtn" className="btn btn-danger">
@@ -74,11 +89,11 @@ const Capture = () => {
               </button>
               <button
                 id="identifyBtn"
-                
                 onClick={(e) => {
                   findBird(e);
                 }}
                 className="btn btn-success"
+                disabled
               >
                 Identify
               </button>
