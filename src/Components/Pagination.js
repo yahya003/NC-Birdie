@@ -10,7 +10,7 @@ const Pagination = ({postsPerPage, totalPosts, setCurrentPage}) => {
 
 
  return (
-    <nav>
+    <div>
      <ul className="pagination">
         {pageNumbers.map((page) => {
          return  <li onClick={(()=> {setCurrentPage(page)})} key = {page}>
@@ -20,7 +20,7 @@ const Pagination = ({postsPerPage, totalPosts, setCurrentPage}) => {
         }
      </ul>
 
-    </nav>
+    </div>
    )
 
 }

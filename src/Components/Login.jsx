@@ -9,7 +9,7 @@ const Login = () => {
   const [error, setError] = useState("")
   const {login} = useUserAuth()
   const navigate = useNavigate()
-  
+  const {user} = useUserAuth()  
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -22,7 +22,8 @@ const Login = () => {
      setError(error.message)
     }
  }
-
+  
+  if (user) return navigate("/home")
   return (
     <div className="signInPage">
        <h2 className="sign">Sign in</h2>
