@@ -18,12 +18,13 @@ const Capture = () => {
   };
   const findBird = (e) => {
     e.preventDefault();
+
     const idBtn = $("#identifyBtn");
     const results = $("#results");
-    const idBrdUrl = $("#birdUrl");
     const hiddenImage = $("#birdImage");
     const fileUpload = $("#fileUpload");
     const mobileNet = new MobileNet();
+
     mobileNet
       .load()
       .then(() => {
@@ -37,37 +38,61 @@ const Capture = () => {
     idBtn.on("click", (evt) => {
       evt.preventDefault();
       idBtn.prop("disabled", true);
-      const reader = new FileReader();
+      if (true) {
+        setbirdieImage(e.target.value);
+        hiddenImage[0].src = e.target.value;
 
-      reader.addEventListener("load", () => {
-        console.log(e);
-        setbirdieImage(reader.result);
-        hiddenImage[0].src = reader.result;
-      });
-
-      reader.readAsDataURL(fileUpload.prop("files")[0]);
-
-      const bird = document.getElementById("birdImage");
-      bird.onload = async () => {
+        const bird = document.getElementById("birdImage");
         bird.width = "224";
         bird.height = "224";
-        const image = tf.browser.fromPixels(bird);
-        console.log(tf.browser)
-        let result = mobileNet.predict(image);
-        const topK = mobileNet.getTopKClasses(result, 1);
-        var res = "";
-        topK.forEach((ele) => {
-          res += ele.label + "</br>";
+       bird.src.replace(/^data:image\/(png|jpg);base64,/, "");
+        console.log(bird)
+        bird.onload = async () => {
+          
+          
+          console.log(bird.src);
+          const image = tf.browser.fromPixels(bird);
+            
+          
+          let result = mobileNet.predict(image);
+          const topK = mobileNet.getTopKClasses(result, 1);
+          var res = "";
+          topK.forEach((ele) => {
+            res += ele.label + "</br>";
+          });
+          const birdieImage = results.html(res);
+          setbirdieName(birdieImage[0].innerText);
+          results.html(res);
+          idBtn.prop("disabled", false);
+        };
+      } else {
+        const reader = new FileReader();
+        reader.addEventListener("load", () => {
+          setbirdieImage(reader.result);
+          hiddenImage[0].src = reader.result;
         });
-        const birdieImage = results.html(res);
-        setbirdieName(birdieImage[0].innerText);
-        results.html(res);
-        idBtn.prop("disabled", false);
-      };
+        reader.readAsDataURL(fileUpload.prop("files")[0]);
+        const bird = document.getElementById("birdImage");
+        console.log(bird);
+        bird.onload = async () => {
+          bird.width = "224";
+          bird.height = "224";
+          const image = tf.browser.fromPixels(bird);
+          let result = mobileNet.predict(image);
+          const topK = mobileNet.getTopKClasses(result, 1);
+          var res = "";
+          topK.forEach((ele) => {
+            res += ele.label + "</br>";
+          });
+          const birdieImage = results.html(res);
+          setbirdieName(birdieImage[0].innerText);
+          results.html(res);
+          idBtn.prop("disabled", false);
+        };
+      }
     });
-    
   };
-  console.log(birdieName);
+
   return (
     <>
       <link
@@ -84,6 +109,17 @@ const Capture = () => {
                   className="form-control"
                   id="fileUpload"
                   type="file"
+                  onChange={(e) => {
+                    findBird(e);
+                  }}
+                />
+              </div>
+              <div className="form-group mb-3">
+                <label htmlFor="birdUrl">Or paste in a URL</label>
+                <input
+                  className="form-control"
+                  id="birdUrl"
+                  placeholder="Paste URL here"
                   onChange={(e) => {
                     findBird(e);
                   }}

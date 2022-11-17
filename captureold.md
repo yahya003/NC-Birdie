@@ -65,7 +65,6 @@ const Capture = () => {
         idBtn.prop("disabled", false);
       };
     });
-    
   };
   console.log(birdieName);
   return (
@@ -84,6 +83,17 @@ const Capture = () => {
                   className="form-control"
                   id="fileUpload"
                   type="file"
+                  onChange={(e) => {
+                    findBird(e);
+                  }}
+                />
+              </div>
+              <div className="form-group mb-3">
+                <label htmlFor="birdUrl">Or paste in a URL</label>
+                <input
+                  className="form-control"
+                  id="birdUrl"
+                  placeholder="Paste URL here"
                   onChange={(e) => {
                     findBird(e);
                   }}
