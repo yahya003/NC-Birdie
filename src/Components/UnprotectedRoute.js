@@ -3,27 +3,24 @@ import { useNavigate } from "react-router-dom";
 import { useUserAuth } from "../context/UserAuthContext";
 import Navigation from "./Navigation";
 
-const ProtectedRoute = ({children}) => {
-    
+const UnprotectedRoute = ({children}) => {
+       
     let {user} = useUserAuth()
     
       
     const navigate = useNavigate()
 
-
-        if(!user) {
-            return navigate("/")     
+    setTimeout(() => {
+        if(user) {
+            return navigate("/home")     
         }
-
-        else
         return (
         <>
-           <Navigation/>
            {children} 
         </>
         )
-       
-    
+    }, 0)
+
 }
 
-export default ProtectedRoute
+export default UnprotectedRoute
