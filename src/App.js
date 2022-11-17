@@ -11,7 +11,6 @@ import { UserAuthContextProvider } from './context/UserAuthContext';
 import ProtectedRoute from './Components/ProtectedRoute';
 import ForgotPassword from './Components/ForgotPassword';
 import ErrorPage from './Components/ErrorPage';
-import UnprotectedRoute from './Components/UnprotectedRoute';
 
 function App() {
   return (
@@ -20,9 +19,9 @@ function App() {
         <Header/>
       <UserAuthContextProvider>
       <Routes>
-        <Route path="/" element={<UnprotectedRoute><Login/></UnprotectedRoute>}></Route>
-        <Route path="/signup" element={<UnprotectedRoute><SignUp/></UnprotectedRoute>}></Route>
-        <Route path="/forgot-password" element={<UnprotectedRoute><ForgotPassword/></UnprotectedRoute>}></Route>
+        <Route path="/" element={<Login/>}></Route>
+        <Route path="/signup" element={<SignUp/>}></Route>
+        <Route path="/forgot-password" element={<ForgotPassword/>}></Route>
         <Route path="/home" element={<ProtectedRoute><Home/></ProtectedRoute>}></Route>
         <Route path="/capture" element={<ProtectedRoute><Capture/></ProtectedRoute>}></Route>
         <Route path="/captured" element={<ProtectedRoute><Captured/></ProtectedRoute>}></Route>

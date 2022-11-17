@@ -7,8 +7,7 @@ const Home = () => {
     
     return (
         <>
-            <h2>Home</h2>
-            <h3 className="captureTitle"> Welcome Back {user?.email} </h3>
+            <h3 className="captureTitle"> Welcome back {user?.email} </h3>
             <h4 className="captureTitle">Birds left to capture</h4>
             
         </>
