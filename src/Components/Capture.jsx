@@ -53,7 +53,7 @@ const Capture = () => {
     });
   };
   return (
-    <>
+    <div className="alignment">
       <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -84,11 +84,9 @@ const Capture = () => {
                   }}
                 />
               </div>
-              <button id="clearAllBtn" className="btn btn-danger">
-                Clear All
-              </button>
               <button
                 id="identifyBtn"
+               
                 onClick={(e) => {
                   findBird(e);
                 }}
@@ -97,6 +95,9 @@ const Capture = () => {
               >
                 Identify
               </button>
+              <button id="clearAllBtn" className="btn btn-danger">
+                Clear All
+              </button>
             </form>
           </div>
         </div>
@@ -104,9 +105,10 @@ const Capture = () => {
 
       <div className="container">
         <div className="row">
-          <div className="col-md-8" id="results"></div>
+          <div className="col-md-8" id="results">
+          </div>
           <div className="col-md-4">
-            <img height="224px" width="224px" id="birdImage" />
+            <img className = "identification" height="224px" width="224px" id="birdImage" />
           </div>
         </div>
       </div>
@@ -115,7 +117,7 @@ const Capture = () => {
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
       ></script>
-    </>
+    </div>
   );
 };
 
