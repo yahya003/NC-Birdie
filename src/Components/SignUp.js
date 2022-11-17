@@ -18,9 +18,9 @@ const SignUp = () => {
        setError(null);
        try {
         await signUp(email, password)
-        setMessage("Account Created. Navigating to sign in page...")
+        setMessage("Account Created. Logging in...")
         setTimeout(() => {
-         navigate("/")
+         navigate("/home")
        }, 3000)
         
        } 
