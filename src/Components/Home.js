@@ -1,9 +1,6 @@
-import { Navigate, useNavigate } from "react-router-dom"
 import { useUserAuth } from "../context/UserAuthContext"
 import { birds } from "./bird_names.js";
 import "../App.css";
-import silhoute from "../emptyBird.png";
-import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import Pagination from "./Pagination.js";
 import CapturedCard from "./CapturedCard";
