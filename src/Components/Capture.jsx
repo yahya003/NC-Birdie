@@ -102,9 +102,6 @@ const Capture = () => {
               >
                 Identify
               </button>
-              <button id="clearAllBtn" className="btn btn-danger">
-                Clear All
-              </button>
             </form>
             {birdieName && (
               <button
