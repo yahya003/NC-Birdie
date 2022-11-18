@@ -1,5 +1,7 @@
 import silhoute from "../emptyBird.png";
 import "../App.css";
+import Pagination from './Pagination';
+
 
 const ShowCard = ({ bird, birdimg }) => {
   return (

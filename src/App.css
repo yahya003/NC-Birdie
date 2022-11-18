@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+body, html {
+  width: 100%;
+  height: 100%;
+}
+
 .captured-card {
   margin-bottom: 1em;
   margin-left: 0.9em;
@@ -116,7 +121,7 @@ nav a {
   width: 250px;
   margin-top: 20px;
   margin-bottom: 20px;
-  margin-right: 40px;
+  margin-right: 66px;
   padding: 3px;
 }
 
@@ -129,4 +134,83 @@ nav a {
   padding: 8px;
   margin-top: 10px;
   margin-bottom: 30px;
+}
+
+.positioning {
+  margin-top: 100px;
+}
+
+.signInPage {
+  margin-top: 50px;
+}
+
+
+
+
+.button {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  padding: 7px;
+}
+
+
+h1 {
+  background-color: brown;
+  padding: 15px;
+}
+
+.forgot {
+  margin-top: 500px;
+}
+
+.title {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.subtitle {
+  margin-top: 20px;
+}
+
+
+.button2{
+  padding: 5px;
+}
+
+
+.pagination {
+  display: inline-flex;
+  background-color: white;
+  list-style: none;
+  color: black;
+  margin-top: 50px;
+}
+
+.pagination li {
+  margin: 3px;
+  padding: 15px;
+  border-radius: 50%;
+  background-color: orange;
+  cursor: pointer;
+}
+
+.alignment {
+  margin-top: 70px;
+}
+
+.identification  {
+  margin-top: 30px;
+  align-items: center;
+}
+
+#results {
+  margin-top: 50px;
+}
+
+#identifyBtn{
+  margin-right: 15px;
+}
+
+#clearAllBtn {
+  margin-left: 15px;
 }
