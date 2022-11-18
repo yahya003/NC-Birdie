@@ -1,19 +1,28 @@
 import "babel-polyfill";
+import silhoute from "../emptyBird.png";
 import * as tf from "@tensorflow/tfjs";
 import { MobileNet } from "./mobilenet";
 import $ from "jquery";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 window.$ = $;
 
 const Capture = () => {
+  const [birdieImage, setbirdieImage] = useState("");
+  const [birdieName, setbirdieName] = useState("");
+  const navigate = useNavigate();
+
+  const addToCaptured = (e) => {
+    e.preventDefault();
+    navigate("/captured", { state: { birdieName, birdieImage } });
+  };
   const findBird = (e) => {
     e.preventDefault();
     const idBtn = $("#identifyBtn");
     const results = $("#results");
-
+    const idBrdUrl = $("#birdUrl");
     const hiddenImage = $("#birdImage");
-
     const fileUpload = $("#fileUpload");
-
     const mobileNet = new MobileNet();
     mobileNet
       .load()
@@ -31,8 +40,10 @@ const Capture = () => {
       const reader = new FileReader();
 
       reader.addEventListener("load", () => {
+        setbirdieImage(reader.result);
         hiddenImage[0].src = reader.result;
       });
+
       reader.readAsDataURL(fileUpload.prop("files")[0]);
 
       const bird = document.getElementById("birdImage");
@@ -46,12 +57,15 @@ const Capture = () => {
         topK.forEach((ele) => {
           res += ele.label + "</br>";
         });
-
+        const birdieImage = results.html(res);
+        setbirdieName(birdieImage[0].innerText);
         results.html(res);
         idBtn.prop("disabled", false);
       };
     });
+    
   };
+
   return (
     <div className="alignment">
       <link
@@ -73,17 +87,10 @@ const Capture = () => {
                   }}
                 />
               </div>
-              <div className="form-group mb-3">
-                <label htmlFor="birdUrl">Or paste in a URL</label>
-                <input
-                  className="form-control"
-                  id="birdUrl"
-                  placeholder="Paste URL here"
-                  onChange={(e) => {
-                    findBird(e);
-                  }}
-                />
-              </div>
+
+              <button id="clearAllBtn" className="btn btn-danger">
+                Clear All
+              </button>
               <button
                 id="identifyBtn"
                
@@ -99,6 +106,15 @@ const Capture = () => {
                 Clear All
               </button>
             </form>
+            {birdieName && (
+              <button
+                onClick={(e) => {
+                  addToCaptured(e);
+                }}
+              >
+                click to add to captured
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -108,7 +124,13 @@ const Capture = () => {
           <div className="col-md-8" id="results">
           </div>
           <div className="col-md-4">
-            <img className = "identification" height="224px" width="224px" id="birdImage" />
+            <img
+              height="224px"
+              width="224px"
+              id="birdImage"
+              alt="bird img"
+              src={silhoute}
+            />
           </div>
         </div>
       </div>
