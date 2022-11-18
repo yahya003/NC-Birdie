@@ -187,10 +187,10 @@ h1 {
 }
 
 .pagination li {
-  margin: 3px;
+  margin: 5px;
   padding: 15px;
   border-radius: 50%;
-  background-color: orange;
+  border: 1px solid black;
   cursor: pointer;
 }
 
@@ -213,4 +213,22 @@ h1 {
 
 #clearAllBtn {
   margin-left: 15px;
+}
+
+
+.search {
+  padding: 7px;
+}
+
+.capture {
+  margin-top: 80px;
+}
+
+.capture img {
+  width: 200px;
+  height: 200px;
+}
+
+.list {
+  margin: 5px;
 }

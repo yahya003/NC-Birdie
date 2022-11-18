@@ -3,7 +3,7 @@ import "../App.css";
 import Pagination from './Pagination';
 
 
-const ShowCard = ({ bird, birdimg }) => {
+const CapturedCard = ({ bird, birdimg }) => {
   return (
     <captured className="captured-card">
       <section className="card-info">
@@ -14,4 +14,4 @@ const ShowCard = ({ bird, birdimg }) => {
   );
 };
 
-export default ShowCard;
+export default CapturedCard;
