@@ -40,7 +40,6 @@ const Capture = () => {
       const reader = new FileReader();
 
       reader.addEventListener("load", () => {
-        console.log(e);
         setbirdieImage(reader.result);
         hiddenImage[0].src = reader.result;
       });
@@ -52,7 +51,6 @@ const Capture = () => {
         bird.width = "224";
         bird.height = "224";
         const image = tf.browser.fromPixels(bird);
-        console.log(tf.browser)
         let result = mobileNet.predict(image);
         const topK = mobileNet.getTopKClasses(result, 1);
         var res = "";
@@ -67,7 +65,7 @@ const Capture = () => {
     });
     
   };
-  console.log(birdieName);
+
   return (
     <>
       <link
