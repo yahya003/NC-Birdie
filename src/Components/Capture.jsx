@@ -4,8 +4,10 @@ import { MobileNet } from "./mobilenet";
 import $ from "jquery";
 window.$ = $;
 
-const Capture = () => {
+const Capture = ({calc, setCalc, img, setImg}) => {
+   
   const findBird = (e) => {
+    
     e.preventDefault();
     const idBtn = $("#identifyBtn");
     const results = $("#results");
@@ -31,27 +33,35 @@ const Capture = () => {
       const reader = new FileReader();
 
       reader.addEventListener("load", () => {
+       
+        
         hiddenImage[0].src = reader.result;
       });
+
+      
       reader.readAsDataURL(fileUpload.prop("files")[0]);
 
       const bird = document.getElementById("birdImage");
+      
       bird.onload = async () => {
         bird.width = "224";
         bird.height = "224";
         const image = tf.browser.fromPixels(bird);
+
         let result = mobileNet.predict(image);
         const topK = mobileNet.getTopKClasses(result, 1);
         var res = "";
         topK.forEach((ele) => {
           res += ele.label + "</br>";
         });
-
         results.html(res);
         idBtn.prop("disabled", false);
       };
     });
   };
+  
+  console.log(img)
+
   return (
     <div className="alignment">
       <link
@@ -108,11 +118,10 @@ const Capture = () => {
           <div className="col-md-8" id="results">
           </div>
           <div className="col-md-4">
-            <img className = "identification" height="224px" width="224px" id="birdImage" />
+            <img className = "identification" height="224px" width="224px" id="birdImage" alt="image" />
           </div>
         </div>
       </div>
-
       <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"

@@ -13,9 +13,14 @@ const Pagination = ({postsPerPage, totalPosts, setCurrentPage}) => {
     <div>
      <ul className="pagination">
         {pageNumbers.map((page) => {
-         return  <li onClick={(()=> {setCurrentPage(page)})} key = {page}>
+         return  (
+         <div className="list"  >
+         <li  onClick={(()=> {setCurrentPage(page)})} key = {page}>
                 {page}
            </li>
+
+           </div>
+         )
         })
         }
      </ul>

@@ -91,6 +91,7 @@ nav a {
 }
 
 
+
 .link {
   color: white;
 }
@@ -100,7 +101,6 @@ nav a {
   color: black;
   background: orange;
 }
-
 .captureTitle {
   margin-top: 50px;  
 }
@@ -190,7 +190,7 @@ h1 {
   margin: 3px;
   padding: 15px;
   border-radius: 50%;
-  background-color: orange;
+  border: 1px solid black;
   cursor: pointer;
 }
 
@@ -213,4 +213,26 @@ h1 {
 
 #clearAllBtn {
   margin-left: 15px;
+}
+
+.img {
+  width: 100px;
+  height: 100px;
+}
+
+.search {
+  padding: 7px;
+}
+
+.capture {
+  margin-top: 80px;
+}
+
+.capture img {
+  width: 200px;
+  height: 200px;
+}
+
+.list {
+  margin: 5px;
 }
