@@ -11,7 +11,7 @@ Birdly is a mobile-first bird watcher web application which uses Artificial Inte
 
 ## Functionality
 
-- Fully implemented authentication system where users can create an account, login or reset password
+- Fully implemented authentication system where users can create an account, log in and reset their password
 - Once logged in users can capture birds by taking a photo of them
 - The photo is sent to an AI which uses TensorFlow to distinguish between over 900 individual bird species
 -  Once the bird has been labeled it is stored in the users collection page.
@@ -19,7 +19,6 @@ Birdly is a mobile-first bird watcher web application which uses Artificial Inte
 ## Tech Stack
 
 - JavaScript
-
 - React.Js
 - NoSQL 
 - Firebase
