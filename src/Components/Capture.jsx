@@ -3,24 +3,24 @@ import silhoute from "../emptyBird.png";
 import * as tf from "@tensorflow/tfjs";
 import { MobileNet } from "./mobilenet";
 import $ from "jquery";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useLocalStorage from "./useLocalStorage";
 window.$ = $;
 
 const Capture = () => {
-  const [birdieImage, setbirdieImage] = useState("");
-  const [birdieName, setbirdieName] = useState("");
+  const [birdieImage, setbirdieImage] = useLocalStorage("birdieImage", []);
+  const [birdieName, setbirdieName] = useLocalStorage("birdieName", []);
   const navigate = useNavigate();
 
   const addToCaptured = (e) => {
     e.preventDefault();
-    navigate("/captured", { state: { birdieName, birdieImage } });
+    navigate("/captured");
   };
   const findBird = (e) => {
     e.preventDefault();
     const idBtn = $("#identifyBtn");
     const results = $("#results");
-    const idBrdUrl = $("#birdUrl");
     const hiddenImage = $("#birdImage");
     const fileUpload = $("#fileUpload");
     const mobileNet = new MobileNet();
@@ -40,7 +40,7 @@ const Capture = () => {
       const reader = new FileReader();
 
       reader.addEventListener("load", () => {
-        setbirdieImage(reader.result);
+        setbirdieImage([...birdieImage, reader.result]);
         hiddenImage[0].src = reader.result;
       });
 
@@ -57,14 +57,17 @@ const Capture = () => {
         topK.forEach((ele) => {
           res += ele.label + "</br>";
         });
-        const birdieImage = results.html(res);
-        setbirdieName(birdieImage[0].innerText);
+        const birdieImg = results.html(res);
+        setbirdieName([...birdieName, birdieImg[0].innerText]);
         results.html(res);
         idBtn.prop("disabled", false);
       };
     });
-    
   };
+  useEffect(() => {
+    localStorage.setItem("name", JSON.stringify(birdieName));
+    localStorage.setItem("img", JSON.stringify(birdieImage));
+  }, [birdieName, birdieImage]);
 
   return (
     <div className="alignment">
@@ -93,7 +96,6 @@ const Capture = () => {
               </button>
               <button
                 id="identifyBtn"
-               
                 onClick={(e) => {
                   findBird(e);
                 }}
@@ -118,8 +120,7 @@ const Capture = () => {
 
       <div className="container">
         <div className="row">
-          <div className="col-md-8" id="results">
-          </div>
+          <div className="col-md-8" id="results"></div>
           <div className="col-md-4">
             <img
               height="224px"

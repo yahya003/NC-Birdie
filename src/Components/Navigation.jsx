@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
 
 const Navigation = () => {
+
    return (
     <nav className="bar" >
+
         <NavLink to = "/home" className={({ isActive }) => (isActive ? "link-active" : "link")} >
            Home
         </NavLink>

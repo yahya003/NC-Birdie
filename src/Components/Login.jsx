@@ -26,6 +26,7 @@ const Login = () => {
   
   if (user) return navigate("/home")
   return (
+    <div className="coverLogin">
     <div className="signInPage">
        <h2 className="sign">Sign in</h2>
        {error && <Alert variant="Error">{error}</Alert>}
@@ -39,13 +40,15 @@ const Login = () => {
         <br/>
         </form>
     
-      <button className="button" type="submit" value="Submit" onClick={handleSubmit}>Sign in</button>
+      <button className="button3" type="submit" value="Submit" onClick={handleSubmit}>Sign in</button>
       <br/>
 
       <NavLink to ="/signup">Don't have an account? Sign Up</NavLink>
       <br/>
       <br/>
-      <NavLink to = "/forgot-password" >Forgot my password</NavLink>
+      <NavLink to = "/forgot-password">Forgot my password</NavLink>
+      
+    </div>
     </div>
   )
 }

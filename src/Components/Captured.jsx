@@ -1,17 +1,11 @@
 import { birds } from "./bird_names.js";
 import "../App.css";
 import silhoute from "../emptyBird.png";
-import { useLocation } from "react-router-dom";
-import { useState } from "react";
-import Pagination from "./Pagination.js";
 
 const Captured = () => {  
-  let location = useLocation();
-  let name = "";
-  console.log(location);
-  if (location.state) {
-    name = location.state.birdieName;
-  }
+  const name = JSON.parse(localStorage.getItem("name"));
+  const img = JSON.parse(localStorage.getItem("img"));
+    console.log(name)
   return (
     <>
       <h3 className="captureTitle">Birds you have captured</h3>
@@ -19,27 +13,30 @@ const Captured = () => {
         {birds.map((bird) => {
           const regex = new RegExp(bird);
           return (
-            <captured className="captured-card">
+            <div className="captured-card">
               <section className="card-info">
-                {regex.test(JSON.stringify(name)) ? (
-                  <img
-                    src={location.state.birdieImage}
-                    alt="bird img"
-                    width="200"
-                    height="200"
-                  ></img>
-                ) : (
-                  <img
-                    src={silhoute}
-                    alt="bird silhoute"
-                    width="200"
-                    height="200"
-                  ></img>
-                )}
+                {name.map((birdie, index) => {
+                  return (
+                    regex.test(JSON.stringify(birdie)) && (
+                      <img
+                        src={img[index]}
+                        alt="bird img"
+                        width="200"
+                        height="200"
+                      ></img>
+                    )
+                  );
+                })}
+                <img
+                  src={silhoute}
+                  alt="bird silhoute"
+                  width="200"
+                  height="200"
+                ></img>
 
                 <p className="captured-card-birdname">{bird}</p>
               </section>
-            </captured>
+            </div>
           );
         })}
       </section>
