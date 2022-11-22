@@ -40,7 +40,7 @@ const Profile = () => {
         <br/>
         <button onClick ={handleClick} className="button">Reset Password</button>
         <h4>0/900 birds found</h4>
-        <button className="button" onClick={handleLogout}>Log Out</button>
+        <button className="button2" onClick={handleLogout}>Log Out</button>
     </>
    )
 }
