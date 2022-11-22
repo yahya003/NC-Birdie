@@ -1,9 +1,12 @@
 # Birdly
 
+<img src="https://i.imgur.com/oMSnTHV.jpg" width=30% height=30%>
 
-Group project Bird watcher app made during a full stack bootcamp with Northcoders
 
-Birdly is a mobile first web application which uses artificial intelligence to classify  bird species.
+## Summary
+
+Birdly is a mobile-first bird watcher web application which uses Artificial Intelligence to classify bird species. Made as part of a group project during a full stack bootcamp with Northcoders
+
 
 
 ## Functionality
