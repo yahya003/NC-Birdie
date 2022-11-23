@@ -17,11 +17,13 @@ import { useUserAuth } from "../context/UserAuthContext";
 const Capture = () => {
   const [birdieImage, setbirdieImage] = useState("");
   const [birdieName, setbirdieName] = useState("");
+  const [disable, setdisable] = useState(false);
   const { user } = useUserAuth();
   const [sent, setSent] = useState(false);
   const birdsCollectionRef = collection(db, `${user.reloadUserInfo.localId}`);
 
   const addToCaptured = async (e) => {
+    setdisable(true)
     e.preventDefault();
     const data = await getDocs(birdsCollectionRef);
     const birdData = data.docs.map((doc) => ({
@@ -44,6 +46,7 @@ const Capture = () => {
   };
 
   const findBird = (e) => {
+    setdisable(false);
     setSent(false)
     setbirdieName("")
     e.preventDefault();
@@ -135,6 +138,7 @@ const Capture = () => {
             {birdieName && (
               <>
                 <button
+                  disabled={disable}
                   onClick={(e) => {
                     addToCaptured(e);
                   }}
