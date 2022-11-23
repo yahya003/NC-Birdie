@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useUserAuth } from "../context/UserAuthContext"
 
-const Profile = () => {
+const Profile = ({caught}) => {
     
     const {logout} = useUserAuth()
     const navigate = useNavigate()
@@ -39,6 +39,7 @@ const Profile = () => {
         <h3>Username: {user?.email}</h3>
         {message}
         <br/>
+        <p>You have caught {caught}/963 birds</p>
         <button onClick ={handleClick} className="button">Reset Password</button>
       <br/>
         <button className="button" onClick={handleLogout}>Log Out</button>

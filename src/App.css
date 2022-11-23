@@ -108,6 +108,8 @@ body, html {
 
 }
 
+
+
 nav {
   margin-left: 0px;
   height: 300px;
@@ -339,3 +341,18 @@ h1 {
   margin: 5px;
 }
 
+.positionBirds {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 70px;
+  margin-bottom: 600px;
+}
+
+.positionBirds img {
+  width: 200px;
+  height: 200px;
+  margin-left: 40px;
+  margin-right: 40px;
+}

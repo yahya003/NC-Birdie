@@ -12,8 +12,11 @@ import { UserAuthContextProvider } from './context/UserAuthContext';
 import ProtectedRoute from './Components/ProtectedRoute';
 import ForgotPassword from './Components/ForgotPassword';
 import ErrorPage from './Components/ErrorPage';
+import { useState } from 'react';
 
 function App() {
+  const [caught, setCaught] = useState(0)
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -25,9 +28,9 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword/>}></Route>
         <Route path="/home" element={<ProtectedRoute><Home/></ProtectedRoute>}></Route>
         <Route path="/capture" element={<ProtectedRoute><Capture/></ProtectedRoute>}></Route>
-        <Route path="/captured" element={<ProtectedRoute><Captured/></ProtectedRoute>}></Route>
+        <Route path="/captured" element={<ProtectedRoute><Captured setCaught={setCaught}/></ProtectedRoute>}></Route>
         <Route path="/birdy" element={<ProtectedRoute><Birdy/></ProtectedRoute>}></Route>
-        <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}></Route>
+        <Route path="/profile" element={<ProtectedRoute><Profile caught={caught}/></ProtectedRoute>}></Route>
         <Route path="*" element={<ErrorPage/>}></Route>
       </Routes>
       </UserAuthContextProvider>
