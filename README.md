@@ -19,7 +19,8 @@ Birdly is a mobile-first bird watcher web application which uses Artificial Inte
 ## Tech Stack
 
 - JavaScript
+- CSS
 - React.Js
-- NoSQL 
-- Firebase
-- APIs
+- Firebase (NoSQL)
+- TensorFlow.js
+

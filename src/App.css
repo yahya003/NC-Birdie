@@ -22,6 +22,17 @@ body, html {
 }
 
 
+.profileContainer {
+  text-align: center;
+  background-image: url('https://img.freepik.com/premium-vector/cute-rural-spring-landscape-tree-field-mountains-cartoon-style_114352-662.jpg?w=900');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: screen;
+  min-height: 750px;
+  background-size: 100% 100%
+}
+
+
 .captured-card {
   margin-bottom: 1em;
   margin-left: 0.9em;

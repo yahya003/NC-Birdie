@@ -33,15 +33,18 @@ const Profile = () => {
    }
    
   return (
-    <>
+    
+     <div className="profileContainer">
         <h2>Profile</h2>
         <h3>Username: {user?.email}</h3>
         {message}
         <br/>
-        <button onClick ={handleClick} className="button">Reset Password</button>
         <h4>0/900 birds found</h4>
+        <button onClick ={handleClick} className="button">Reset Password</button>
+      <br/>
         <button className="button2" onClick={handleLogout}>Log Out</button>
-    </>
+        </div>
+    
    )
 }
 

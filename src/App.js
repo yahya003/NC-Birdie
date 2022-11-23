@@ -7,6 +7,7 @@ import SignUp from './Components/SignUp';
 import Captured from './Components/Captured';
 import Profile from './Components/Profile';
 import Capture from './Components/Capture';
+import Birdy from './Components/Birdy';
 import { UserAuthContextProvider } from './context/UserAuthContext';
 import ProtectedRoute from './Components/ProtectedRoute';
 import ForgotPassword from './Components/ForgotPassword';
@@ -25,6 +26,7 @@ function App() {
         <Route path="/home" element={<ProtectedRoute><Home/></ProtectedRoute>}></Route>
         <Route path="/capture" element={<ProtectedRoute><Capture/></ProtectedRoute>}></Route>
         <Route path="/captured" element={<ProtectedRoute><Captured/></ProtectedRoute>}></Route>
+        <Route path="/birdy" element={<ProtectedRoute><Birdy/></ProtectedRoute>}></Route>
         <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}></Route>
         <Route path="*" element={<ErrorPage/>}></Route>
       </Routes>

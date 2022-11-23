@@ -16,6 +16,9 @@ const Navigation = () => {
         <NavLink to = "/captured" className={({ isActive }) => (isActive ? "link-active" : "link")}>
            Captured
         </NavLink>
+        <NavLink to = "/birdy" className={({ isActive }) => (isActive ? "link-active" : "link")}>
+           Birdy Game
+        </NavLink>
 
         <NavLink to = "/profile" className={({ isActive }) => (isActive ? "link-active" : "link")}>
            Profile
