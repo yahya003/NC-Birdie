@@ -1,65 +1,87 @@
-import { Navigate, useNavigate } from "react-router-dom"
-import { useUserAuth } from "../context/UserAuthContext"
-import { birds } from "./bird_names.js";
+import { useUserAuth } from "../context/UserAuthContext";
 import "../App.css";
-import silhoute from "../emptyBird.png";
-import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Pagination from "./Pagination.js";
 import CapturedCard from "./CapturedCard";
-
+import { db } from "../Firebase";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 
 const Home = () => {
-    const [currentPage, setCurrentPage] = useState(1)
-    const [postsPerPage, setPostsPerPage] = useState(30)
-    const indexOfLastPost = currentPage*postsPerPage
-    const indexOfFirstPost = indexOfLastPost - postsPerPage
-    const currentPost = birds.slice(indexOfFirstPost, indexOfLastPost)
-    const [search, setSearch] = useState("")
-    const {user} = useUserAuth()
+  const [currentPage, setCurrentPage] = useState(1);
+  const [birdData, setbirdData] = useState([]);
+  const [loading, setloading] = useState(true);
+  const [search, setSearch] = useState("");
+  const { user } = useUserAuth();
+  const postsPerPage = 30;
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const birdsCollectionRef = collection(db, `${user.reloadUserInfo.localId}`);
+  /*  const currentPost = birds.slice(indexOfFirstPost, indexOfLastPost); */
 
-    const handleChange = (event) => {
-        setSearch(event.target.value)
-    }
+  useEffect(() => {
+    setloading(true);
+    const getbirds = async () => {
+      const data = await getDocs(birdsCollectionRef);
+      const birdData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      setbirdData(JSON.parse(birdData[0].birds));
+      setloading(false);
+    };
+    getbirds();
+  }, []);
+  const handleChange = (event) => {
+    setSearch(event.target.value);
+  };
 
-    return (
-        <>
-            <h3 className="captureTitle"> Welcome back {user?.email} </h3>
-            <h4 className="captureTitle">Birds left to capture</h4>
-            <input onChange={handleChange} id = "search" className="search" placeholder="Search for a specific bird..."/>
-         
-            
-           <section className="all-birds">
-              {(() => {
-               if (search === "") {
-                return ( 
-                    <>
-                    
-                      {currentPost.map((bird) => {
-                         return (
-                           <div className="all-birds">
-                            <CapturedCard bird={bird}/>
-                           </div>
-                         )
-                    })}
-                      <Pagination postsPerPage={postsPerPage} totalPosts={birds.length} setCurrentPage={setCurrentPage}/>
-                    </>
-                )
-               }
-               else if (search !== "") {
-                  return birds.map((bird) => {
-                    if (bird.toLowerCase().includes(search.toLowerCase())) {
-                        return <div className="all-birds">
-                            <CapturedCard bird={bird}/>
-                        </div>
-                    }
-                  })
-               }
-              })()}
-              
-           </section> 
-        </>
-    )
-}
+  return (
+    <>
+      <h3 className="captureTitle"> Welcome back {user?.email} </h3>
+      <h4 className="captureTitle">Birds left to capture</h4>
+      <input
+        onChange={handleChange}
+        id="search"
+        className="search"
+        placeholder="Search for a specific bird..."
+      />
+      {loading ? (
+        <div>loading...</div>
+      ) : (
+        <section className="all-birds">
+          {(() => {
+            if (search === "") {
+              return (
+                <>
+                  {birdData.map((bird, index) => {
+                    return (
+                      <div key={bird + index} className="all-birds">
+                        <CapturedCard bird={bird} />
+                      </div>
+                    );
+                  })}
+                  <Pagination
+                    postsPerPage={postsPerPage}
+                    totalPosts={birdData.length}
+                    setCurrentPage={setCurrentPage}
+                  />
+                </>
+              );
+            } else if (search !== "") {
+              return birdData.map((bird) => {
+                if (
+                  bird.birdName.toLowerCase().includes(search.toLowerCase())
+                ) {
+                  return (
+                    <div key={bird.id} className="all-birds">
+                      <CapturedCard bird={bird} />
+                    </div>
+                  );
+                }
+              });
+            }
+          })()}
+        </section>
+      )}
+    </>
+  );
+};
 
-export default Home
+export default Home;

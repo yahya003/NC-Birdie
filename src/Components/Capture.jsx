@@ -4,23 +4,46 @@ import * as tf from "@tensorflow/tfjs";
 import { MobileNet } from "./mobilenet";
 import $ from "jquery";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-window.$ = $;
+import { db } from "../Firebase";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
+import { useUserAuth } from "../context/UserAuthContext";
 
 const Capture = () => {
   const [birdieImage, setbirdieImage] = useState("");
   const [birdieName, setbirdieName] = useState("");
-  const navigate = useNavigate();
+  const { user } = useUserAuth();
+  const birdsCollectionRef = collection(db, `${user.reloadUserInfo.localId}`);
 
-  const addToCaptured = (e) => {
+  const addToCaptured = async (e) => {
     e.preventDefault();
-    navigate("/captured", { state: { birdieName, birdieImage } });
+    const data = await getDocs(birdsCollectionRef);
+    const birdData = data.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    const dataPath = doc(db, `${user.reloadUserInfo.localId}`, birdData[0].id);
+    const parsed = JSON.parse(birdData[0].birds);
+    const birdie = birdieName.replace("\n", "");
+    const reg = new RegExp(birdie, "ig");
+
+    parsed.map((p, i) => {
+      if (reg.test(p.birdName)) {
+        p.birdImage = birdieImage;
+      }
+    });
+    await updateDoc(dataPath, { birds: JSON.stringify(parsed) });
   };
+
   const findBird = (e) => {
     e.preventDefault();
     const idBtn = $("#identifyBtn");
     const results = $("#results");
-    const idBrdUrl = $("#birdUrl");
     const hiddenImage = $("#birdImage");
     const fileUpload = $("#fileUpload");
     const mobileNet = new MobileNet();
@@ -41,6 +64,7 @@ const Capture = () => {
 
       reader.addEventListener("load", () => {
         setbirdieImage(reader.result);
+
         hiddenImage[0].src = reader.result;
       });
 
@@ -63,7 +87,6 @@ const Capture = () => {
         idBtn.prop("disabled", false);
       };
     });
-    
   };
 
   return (
@@ -87,13 +110,11 @@ const Capture = () => {
                   }}
                 />
               </div>
-
               <button id="clearAllBtn" className="btn btn-danger">
                 Clear All
               </button>
               <button
                 id="identifyBtn"
-               
                 onClick={(e) => {
                   findBird(e);
                 }}
@@ -118,8 +139,7 @@ const Capture = () => {
 
       <div className="container">
         <div className="row">
-          <div className="col-md-8" id="results">
-          </div>
+          <div className="col-md-8" id="results"></div>
           <div className="col-md-4">
             <img
               height="224px"
