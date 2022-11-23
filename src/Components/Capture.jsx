@@ -3,7 +3,7 @@ import silhoute from "../emptyBird.png";
 import * as tf from "@tensorflow/tfjs";
 import { MobileNet } from "./mobilenet";
 import $ from "jquery";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { db } from "../Firebase";
 import {
   collection,
@@ -30,6 +30,7 @@ const Capture = () => {
     }));
     const dataPath = doc(db, `${user.reloadUserInfo.localId}`, birdData[0].id);
     const parsed = JSON.parse(birdData[0].birds);
+    console.log(birdieName)
     const birdie = birdieName.replace("\n", "");
     const reg = new RegExp(birdie, "ig");
 
@@ -85,7 +86,7 @@ const Capture = () => {
           res += ele.label + "</br>";
         });
         const birdieImg = results.html(res);
-        setbirdieName([...birdieName, birdieImg[0].innerText]);
+        setbirdieName(birdieImg[0].innerText);
         results.html(res);
         idBtn.prop("disabled", false);
       };
