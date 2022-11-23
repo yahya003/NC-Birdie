@@ -43,6 +43,8 @@ const Capture = () => {
   };
 
   const findBird = (e) => {
+    setSent(false)
+    setbirdieName("")
     e.preventDefault();
     const idBtn = $("#identifyBtn");
     const results = $("#results");

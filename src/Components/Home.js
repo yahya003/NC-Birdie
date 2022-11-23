@@ -65,12 +65,12 @@ const Home = () => {
                 </>
               );
             } else if (search !== "") {
-              return birdData.map((bird) => {
+              return birdData.map((bird, index) => {
                 if (
                   bird.birdName.toLowerCase().includes(search.toLowerCase())
                 ) {
                   return (
-                    <div key={bird.id} className="all-birds">
+                    <div key={bird + index} className="all-birds">
                       <CapturedCard bird={bird} />
                     </div>
                   );
