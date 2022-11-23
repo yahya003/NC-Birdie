@@ -11,7 +11,10 @@ window.$ = $;
 const Capture = () => {
   const [birdieImage, setbirdieImage] = useLocalStorage("birdieImage", []);
   const [birdieName, setbirdieName] = useLocalStorage("birdieName", []);
+  const [disableButton, setDisableButton] = useState(true)
   const navigate = useNavigate();
+
+ 
 
   const addToCaptured = (e) => {
     e.preventDefault();
@@ -97,19 +100,21 @@ const Capture = () => {
               <button
                 id="identifyBtn"
                 onClick={(e) => {
+                  setDisableButton(false)
                   findBird(e);
                 }}
                 className="btn btn-success"
-                disabled
+                
               >
                 Identify
               </button>
             </form>
+            
             {birdieName && (
-              <button
+              <button disabled = {disableButton}
                 onClick={(e) => {
                   addToCaptured(e);
-                }}
+                }} className="button"
               >
                 click to add to captured
               </button>

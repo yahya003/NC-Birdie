@@ -40,6 +40,10 @@ body, html {
   display: block; 
   border: 0.5px solid rgb(185, 175, 175);
 }
+.title2 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
 
 .captured-card-birdname {
   margin-bottom: 0.1em;

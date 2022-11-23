@@ -24,13 +24,13 @@ const Home = () => {
     return (
         <>
           <h3 className="WelcomeTitle"> {user?.email} </h3>
-          <div class="boxo"> 
-          <div class="box">
+          <div className="boxo"> 
+          <div className="box">
           <form name="search">
                   <input onChange={handleChange} class="input" placeholder="Search for a specific bird..."/>
              
                   </form>
-                  <i class="fas fa-search"></i></div>
+                  <i className="fas fa-search"></i></div>
                   </div>
              {/* <h4 className="captureTitle">Birds left to capture</h4> */}
            
