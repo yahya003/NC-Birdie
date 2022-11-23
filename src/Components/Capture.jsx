@@ -18,6 +18,7 @@ const Capture = () => {
   const [birdieImage, setbirdieImage] = useState("");
   const [birdieName, setbirdieName] = useState("");
   const { user } = useUserAuth();
+  const [sent, setSent] = useState(false);
   const birdsCollectionRef = collection(db, `${user.reloadUserInfo.localId}`);
 
   const addToCaptured = async (e) => {
@@ -38,6 +39,7 @@ const Capture = () => {
       }
     });
     await updateDoc(dataPath, { birds: JSON.stringify(parsed) });
+    setSent(true)
   };
 
   const findBird = (e) => {
@@ -125,13 +127,16 @@ const Capture = () => {
               </button>
             </form>
             {birdieName && (
-              <button
-                onClick={(e) => {
-                  addToCaptured(e);
-                }}
-              >
-                click to add to captured
-              </button>
+              <>
+                <button
+                  onClick={(e) => {
+                    addToCaptured(e);
+                  }}
+                >
+                  click to add to captured
+                </button>
+                {sent && <div>photo sent!</div>}
+              </>
             )}
           </div>
         </div>
