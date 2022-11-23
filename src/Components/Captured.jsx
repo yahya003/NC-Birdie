@@ -22,6 +22,7 @@ const Captured = () => {
     getbirds();
   }, []);
   if (loading) return <div>loading...</div>;
+
   return (
     <>
       <h3 className="captureTitle">Birds you have captured</h3>

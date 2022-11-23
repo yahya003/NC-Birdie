@@ -11,52 +11,26 @@ import { UserAuthContextProvider } from "./context/UserAuthContext";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import ForgotPassword from "./Components/ForgotPassword";
 import ErrorPage from "./Components/ErrorPage";
+import Birdy from './Components/Birdy';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
-        <UserAuthContextProvider>
-          <Routes>
-            <Route path="/" element={<Login />}></Route>
-            <Route path="/signup" element={<SignUp />}></Route>
-            <Route path="/forgot-password" element={<ForgotPassword />}></Route>
-            <Route
-              path="/home"
-              element={
-                <ProtectedRoute>
-                  <Home />
-                </ProtectedRoute>
-              }
-            ></Route>
-            <Route
-              path="/capture"
-              element={
-                <ProtectedRoute>
-                  <Capture />
-                </ProtectedRoute>
-              }
-            ></Route>
-            <Route
-              path="/captured"
-              element={
-                <ProtectedRoute>
-                  <Captured />
-                </ProtectedRoute>
-              }
-            ></Route>
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              }
-            ></Route>
-            <Route path="*" element={<ErrorPage />}></Route>
-          </Routes>
-        </UserAuthContextProvider>
+        <Header/>
+      <UserAuthContextProvider>
+      <Routes>
+        <Route path="/" element={<Login/>}></Route>
+        <Route path="/signup" element={<SignUp/>}></Route>
+        <Route path="/forgot-password" element={<ForgotPassword/>}></Route>
+        <Route path="/home" element={<ProtectedRoute><Home/></ProtectedRoute>}></Route>
+        <Route path="/capture" element={<ProtectedRoute><Capture/></ProtectedRoute>}></Route>
+        <Route path="/captured" element={<ProtectedRoute><Captured/></ProtectedRoute>}></Route>
+        <Route path="/birdy" element={<ProtectedRoute><Birdy/></ProtectedRoute>}></Route>
+        <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}></Route>
+        <Route path="*" element={<ErrorPage/>}></Route>
+      </Routes>
+      </UserAuthContextProvider>
       </div>
     </BrowserRouter>
   );

@@ -24,6 +24,7 @@ const Login = () => {
 
   if (user) return navigate("/home");
   return (
+    <div className="coverLogin">
     <div className="signInPage">
       <h2 className="sign">Sign in</h2>
       {error && <Alert variant="Error">{error}</Alert>}
@@ -50,7 +51,6 @@ const Login = () => {
         />
         <br />
       </form>
-
       <button
         className="button"
         type="submit"

@@ -1,5 +1,6 @@
 import "../App.css";
 
+
 const CapturedCard = ({ bird }) => {
   return (
     <div className="captured-card">
@@ -11,6 +12,7 @@ const CapturedCard = ({ bird }) => {
           height="200"
         ></img>
         <p className="captured-card-birdname">{bird.birdName}</p>
+
       </section>
     </div>
   );

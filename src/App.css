@@ -1,17 +1,44 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: black;
+  overflow-x: hidden;
+
 }
 
-body,
-html {
+
+body, html {
   width: 100%;
   height: 100%;
 }
+
+.App {
+  text-align: center;
+  background-image: url('https://img.freepik.com/premium-vector/cute-rural-spring-landscape-tree-field-mountains-cartoon-style_114352-662.jpg?w=900');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: screen;
+}
+
+
+.profileContainer {
+  text-align: center;
+  background-image: url('https://img.freepik.com/premium-vector/cute-rural-spring-landscape-tree-field-mountains-cartoon-style_114352-662.jpg?w=900');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: screen;
+  min-height: 750px;
+  background-size: 100% 100%
+}
+
 
 .captured-card {
   margin-bottom: 1em;
   margin-left: 0.9em;
   margin-right: 0.9em;
+  display: block; 
+  border: 0.5px solid rgb(185, 175, 175);
 }
 
 .captured-card-birdname {
@@ -25,6 +52,11 @@ html {
   justify-content: center;
   margin: 0 1.5rem;
   margin-top: 1em;
+}
+
+.all-birds img {
+  width: 250px;
+  height: 250px;
 }
 
 .App-logo {
@@ -66,19 +98,22 @@ html {
   padding: 10px;
   color: white;
   background-color: brown;
+  background-image: url("birdie.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+
 }
 
 nav {
   margin-left: 0px;
-  height: 56px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: brown;
-  box-shadow: 0 5px 10px #ccc;
-  min-width: 320px;
   padding-top: 15px;
   padding-bottom: 15px;
+  background-image: url("birdie.jpg");
+  background-size: auto;
 }
 
 nav a {
@@ -86,22 +121,89 @@ nav a {
   align-items: center;
   padding-left: 15px;
   padding-right: 15px;
-  height: 100%;
   text-decoration: none;
+  font-weight: bold;
+  font-size: 19px;
+  vertical-align: text-top;
+  margin-top: -250px;
+}
+
+.WelcomeTitle {
+  color: #f16666;
+  position: relative;
+  font-weight: 400;
+  left:40%;
+  margin-bottom: 10%;
+  margin-top: 2%;
+}
+
+
+.search {
+  padding: 7px;
+  border: none;
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 17px;
 }
 
 .link {
-  color: white;
+  color: black;
+  height: 30px;
 }
 
 .link-active {
   color: black;
-  background: orange;
+  background: rgb(5, 210, 247);
 }
 
 .captureTitle {
-  margin-top: 50px;
+
+  margin-top: 50px;  
+  color: #000000;
+  position: relative;
+  font-size: 1.3em;
+  font-weight: 400;
 }
+
+.box{
+  position: relative;
+}
+
+
+
+.input {
+  padding: 7px;
+  width: 19%;
+  background: none;
+  border: 4px solid #ffd52d;
+  border-radius: 50px;
+  box-sizing: border-box;
+  font-family: Comic Sans MS;
+  font-size: 18px;
+  color: #ffd52d;
+  outline: none;
+  transition: .5s;
+  margin-bottom: 3%;
+}
+.box:hover input{
+  width: 350px;
+  background: #55e1eb;
+  border-radius: 10px;
+}
+.box i{
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translate(-50%,-50%);
+  font-size: 26px;
+  color: #ffd52d;
+  transition: .2s;
+}
+.box:hover i{
+  opacity: 0;
+  z-index: -1;
+}
+
 
 .signInPage {
   margin-top: 50px;
@@ -109,9 +211,9 @@ nav a {
 
 #email {
   width: 250px;
-  margin-top: 20px;
+  margin-top: 60px;
   margin-bottom: 20px;
-  margin-right: 42px;
+  margin-right: 12px;
   padding: 3px;
 }
 
@@ -119,7 +221,7 @@ nav a {
   width: 250px;
   margin-top: 20px;
   margin-bottom: 20px;
-  margin-right: 66px;
+  margin-right: 36px;
   padding: 3px;
 }
 
@@ -165,8 +267,10 @@ h1 {
   margin-top: 20px;
 }
 
-.button2 {
-  padding: 5px;
+.button3{
+  padding: 7px;
+  margin-top: 30px;
+
 }
 
 .pagination {

@@ -68,7 +68,6 @@ const Capture = () => {
 
       reader.addEventListener("load", () => {
         setbirdieImage(reader.result);
-
         hiddenImage[0].src = reader.result;
       });
 
@@ -85,13 +84,17 @@ const Capture = () => {
         topK.forEach((ele) => {
           res += ele.label + "</br>";
         });
-        const birdieImage = results.html(res);
-        setbirdieName(birdieImage[0].innerText);
+        const birdieImg = results.html(res);
+        setbirdieName([...birdieName, birdieImg[0].innerText]);
         results.html(res);
         idBtn.prop("disabled", false);
       };
     });
   };
+  useEffect(() => {
+    localStorage.setItem("name", JSON.stringify(birdieName));
+    localStorage.setItem("img", JSON.stringify(birdieImage));
+  }, [birdieName, birdieImage]);
 
   return (
     <div className="alignment">
