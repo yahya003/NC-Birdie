@@ -1,17 +1,17 @@
-import './App.css';
-import Header from './Components/Header';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './Components/Home';
-import Login from './Components/Login';
-import SignUp from './Components/SignUp';
-import Captured from './Components/Captured';
-import Profile from './Components/Profile';
-import Capture from './Components/Capture';
+import "./App.css";
+import Header from "./Components/Header";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./Components/Home";
+import Login from "./Components/Login";
+import SignUp from "./Components/SignUp";
+import Captured from "./Components/Captured";
+import Profile from "./Components/Profile";
+import Capture from "./Components/Capture";
+import { UserAuthContextProvider } from "./context/UserAuthContext";
+import ProtectedRoute from "./Components/ProtectedRoute";
+import ForgotPassword from "./Components/ForgotPassword";
+import ErrorPage from "./Components/ErrorPage";
 import Birdy from './Components/Birdy';
-import { UserAuthContextProvider } from './context/UserAuthContext';
-import ProtectedRoute from './Components/ProtectedRoute';
-import ForgotPassword from './Components/ForgotPassword';
-import ErrorPage from './Components/ErrorPage';
 
 function App() {
   return (

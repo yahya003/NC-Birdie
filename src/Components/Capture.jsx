@@ -3,21 +3,48 @@ import silhoute from "../emptyBird.png";
 import * as tf from "@tensorflow/tfjs";
 import { MobileNet } from "./mobilenet";
 import $ from "jquery";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import useLocalStorage from "./useLocalStorage";
-window.$ = $;
+import { useState } from "react";
+import { db } from "../Firebase";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
+import { useUserAuth } from "../context/UserAuthContext";
 
 const Capture = () => {
-  const [birdieImage, setbirdieImage] = useLocalStorage("birdieImage", []);
-  const [birdieName, setbirdieName] = useLocalStorage("birdieName", []);
-  const navigate = useNavigate();
+  const [birdieImage, setbirdieImage] = useState("");
+  const [birdieName, setbirdieName] = useState("");
+  const { user } = useUserAuth();
+  const [sent, setSent] = useState(false);
+  const birdsCollectionRef = collection(db, `${user.reloadUserInfo.localId}`);
 
-  const addToCaptured = (e) => {
+  const addToCaptured = async (e) => {
     e.preventDefault();
-    navigate("/captured");
+    const data = await getDocs(birdsCollectionRef);
+    const birdData = data.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    const dataPath = doc(db, `${user.reloadUserInfo.localId}`, birdData[0].id);
+    const parsed = JSON.parse(birdData[0].birds);
+    const birdie = birdieName.replace("\n", "");
+    const reg = new RegExp(birdie, "ig");
+
+    parsed.map((p, i) => {
+      if (reg.test(p.birdName)) {
+        p.birdImage = birdieImage;
+      }
+    });
+    await updateDoc(dataPath, { birds: JSON.stringify(parsed) });
+    setSent(true)
   };
+
   const findBird = (e) => {
+    setSent(false)
+    setbirdieName("")
     e.preventDefault();
     const idBtn = $("#identifyBtn");
     const results = $("#results");
@@ -40,7 +67,7 @@ const Capture = () => {
       const reader = new FileReader();
 
       reader.addEventListener("load", () => {
-        setbirdieImage([...birdieImage, reader.result]);
+        setbirdieImage(reader.result);
         hiddenImage[0].src = reader.result;
       });
 
@@ -90,7 +117,6 @@ const Capture = () => {
                   }}
                 />
               </div>
-
               <button id="clearAllBtn" className="btn btn-danger">
                 Clear All
               </button>
@@ -106,13 +132,16 @@ const Capture = () => {
               </button>
             </form>
             {birdieName && (
-              <button
-                onClick={(e) => {
-                  addToCaptured(e);
-                }}
-              >
-                click to add to captured
-              </button>
+              <>
+                <button
+                  onClick={(e) => {
+                    addToCaptured(e);
+                  }}
+                >
+                  click to add to captured
+                </button>
+                {sent && <div>photo sent!</div>}
+              </>
             )}
           </div>
         </div>

@@ -1,28 +1,28 @@
-const Pagination = ({postsPerPage, totalPosts, setCurrentPage}) => {
-  
-    const pageNumbers = []
-   
-     for (let i = 1; i <= Math.ceil(totalPosts/postsPerPage); i++) {
-        pageNumbers.push(i)
-     }
+const Pagination = ({ postsPerPage, totalPosts, setCurrentPage }) => {
+  const pageNumbers = [];
 
+  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    pageNumbers.push(i);
+  }
 
-
-
- return (
+  return (
     <div>
-     <ul className="pagination">
+      <ul className="pagination">
         {pageNumbers.map((page) => {
-         return  <li onClick={(()=> {setCurrentPage(page)})} key = {page}>
-                {page}
-           </li>
-        })
-        }
-     </ul>
-
+          return (
+            <li
+              onClick={() => {
+                setCurrentPage(page);
+              }}
+              key={page}
+            >
+              {page}
+            </li>
+          );
+        })}
+      </ul>
     </div>
-   )
+  );
+};
 
-}
-
-export default Pagination
+export default Pagination;
