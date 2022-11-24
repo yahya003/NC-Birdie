@@ -26,6 +26,7 @@ const Captured = () => {
   return (
     <>
       <h3 className="captureTitle">Birds you have captured</h3>
+      <div className="capturedScreen1">
       <section className="all-birds">
         {birdData.map((bird, index) => {
           console.log(bird)
@@ -40,6 +41,7 @@ const Captured = () => {
             );}
         })}
       </section>
+      </div>
     </>
   );
 };

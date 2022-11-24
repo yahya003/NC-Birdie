@@ -32,15 +32,17 @@ const Profile = () => {
 
   return (
     <>
-      <h2>Profile</h2>
+      <h2 className="profile">Profile</h2>
       <h3>Username: {user?.email}</h3>
-      {message}
       <br />
+      <h4>0/900 birds found</h4>
+      <br/>
+      {message}
+      <br/>
       <button onClick={handleClick} className="button">
         Reset Password
       </button>
-      <h4>0/900 birds found</h4>
-      <button className="button" onClick={handleLogout}>
+      <button className="button3" onClick={handleLogout}>
         Log Out
       </button>
     </>

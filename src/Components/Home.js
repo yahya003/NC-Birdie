@@ -34,8 +34,8 @@ const Home = () => {
 
   return (
     <>
-      <h3 className="captureTitle"> Welcome back {user?.email} </h3>
-      <h4 className="captureTitle">Birds left to capture</h4>
+      <h3 className="welcome-message"> Welcome back {user?.email} </h3>
+      <h4 className="beforeSearch">Birds left to capture</h4>
       <input
         onChange={handleChange}
         id="search"
