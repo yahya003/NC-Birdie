@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserAuth } from "../context/UserAuthContext";
 
-const Profile = () => {
+const Profile = ({count}) => {
   const { logout } = useUserAuth();
   const navigate = useNavigate();
   const { user } = useUserAuth();
@@ -35,7 +35,7 @@ const Profile = () => {
       <h2 className="profile">Profile</h2>
       <h3>Username: {user?.email}</h3>
       <br />
-      <h4>0/900 birds found</h4>
+      <h4>{count}/900 birds found</h4>
       <br/>
       {message}
       <br/>

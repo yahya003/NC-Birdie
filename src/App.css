@@ -96,7 +96,7 @@ body{
 .header-background {
   padding: 50px;
   color: white;
-  background-color: brown;
+
   background-image: url("birdie.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -119,6 +119,10 @@ nav {
   padding-bottom: 15px;
   /* background-image: url("birdie.jpg"); */
   background-size: cover;
+}
+
+.mainTitle {
+  color: white;
 }
 
 nav a {

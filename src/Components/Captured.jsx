@@ -1,11 +1,11 @@
 import "../App.css";
 import { useEffect, useState } from "react";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import { collection, getDocs, addDoc, setIndexConfiguration } from "firebase/firestore";
 import { db } from "../Firebase";
 import { useUserAuth } from "../context/UserAuthContext";
 import CapturedCard from "./CapturedCard";
 
-const Captured = () => {
+const Captured = ({setCount}) => {
   const [birdData, setbirdData] = useState([]);
   const [loading, setloading] = useState(true);
   const { user } = useUserAuth();
@@ -21,26 +21,41 @@ const Captured = () => {
     };
     getbirds();
   }, []);
-  if (loading) return <div>loading...</div>;
+  
+  const showBirds = birdData.map((bird, index) => {
+    if (
+      bird.birdImage !==
+      "/static/media/emptyBird.f3797a16e0d1b452c6c3.png"
+    ){
+      
+      return (
+        <div key={bird + index} className="all-birds">
+          <CapturedCard bird={bird} />
+        </div>
+      );}
+      
+  })
 
+
+  if (loading) return <div>loading...</div>;  
   return (
     <>
       <h3 className="captureTitle">Birds you have captured</h3>
-      <div className="capturedScreen1">
+      <div className="capturedScreen1"> 
       <section className="all-birds">
-        {birdData.map((bird, index) => {
-          console.log(bird)
-          if (
-            bird.birdImage !==
-            "/static/media/emptyBird.f3797a16e0d1b452c6c3.png"
-          ){
-            return (
-              <div key={bird + index} className="all-birds">
-                <CapturedCard bird={bird} />
-              </div>
-            );}
-        })}
+         {showBirds}
+         {setCount(() => {
+          let num = 0
+          for (let i = 0; i < showBirds.length; i++) {
+            if (showBirds[i] != undefined) {
+              num++
+            }
+          }
+          return num
+         })
+         }
       </section>
+    
       </div>
     </>
   );
