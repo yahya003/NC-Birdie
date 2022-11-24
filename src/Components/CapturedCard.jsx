@@ -9,7 +9,9 @@ const CapturedCard = ({ bird }) => {
   return (
     <div className="captured-card">
       <section className="card-info">        
-        {name.map((birdie, index) => {
+        {(() => {
+          if (name)
+          return name.map((birdie, index) => {
           return (
             regex.test(JSON.stringify(birdie)) && (
               <img
@@ -18,9 +20,13 @@ const CapturedCard = ({ bird }) => {
                 width="200"
                 height="200"
               ></img>
-            )
-          );
-        })}
+             )
+            );
+           })
+           else return ""
+          ()
+         })
+        }
         <img src={silhoute} alt="bird silhoute" width="200" height="200"></img>
         <p className="captured-card-birdname">{bird}</p>
       </section>
