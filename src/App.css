@@ -103,11 +103,19 @@ body{
 }
 
 .header-background {
-  padding: 10px;
-  height: 150px;
+
+  padding: 50px;
+  color: white;
+
+
   background-image: url("birdie.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.profile {
+  margin-top: -200px;
+  margin-bottom: 30px;
 }
 
 nav {
@@ -122,6 +130,10 @@ nav {
   padding-bottom: 15px;
   /* background-image: url("birdie.jpg"); */
   background-size: cover;
+}
+
+.mainTitle {
+  color: white;
 }
 
 nav a {
@@ -163,14 +175,23 @@ nav a {
   color: black;
   background: rgb(5, 210, 247);
 }
+.welcome-message {
+  margin-top: -200px;
+  margin-bottom: 30px;
+}
+
 
 .captureTitle {
-
-  margin-top: 50px;  
+  margin-top: -200px;
+  
   color: #000000;
   position: relative;
   font-size: 1.3em;
   font-weight: 400;
+}
+
+.beforeSearch {
+  margin-bottom: 20px;
 }
 
 .box{
@@ -225,6 +246,12 @@ nav a {
   padding: 3px;
 }
 
+.alignment {
+  margin-bottom: 110px;
+}
+
+
+
 #password {
   width: 250px;
   margin-top: 20px;
@@ -241,6 +268,18 @@ nav a {
   padding: 8px;
   margin-top: 10px;
   margin-bottom: 30px;
+}
+.capturedScreen1 {
+  margin-bottom: 400px;
+}
+
+.button3 {
+  padding: 8px;
+  width: 80px;
+  margin-top: 10px;
+  margin-bottom: 580px;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .positioning {
@@ -328,4 +367,8 @@ nav a {
 
 .list {
   margin: 5px;
+}
+
+.coverLogin {
+  margin-bottom: 500px;
 }
