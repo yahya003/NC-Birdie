@@ -108,12 +108,14 @@ nav {
   margin-left: 0px;
   height: 300px;
   display: flex;
+  background-repeat: no-repeat;
+  object-fit: cover;
   justify-content: center;
   align-items: center;
   padding-top: 15px;
   padding-bottom: 15px;
-  background-image: url("birdie.jpg");
-  background-size: auto;
+  /* background-image: url("birdie.jpg"); */
+  background-size: cover;
 }
 
 nav a {
