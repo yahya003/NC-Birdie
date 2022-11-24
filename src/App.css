@@ -6,6 +6,15 @@
   overflow-x: hidden;
 }
 
+h1{
+  border-radius: 15px;
+  color: #334683;
+  background-color: #abe5f576;
+  width: 180px;
+  margin: auto;
+  position: relative;
+  top: 30%;
+}
 
 body, html {
   width: 100%;
@@ -95,8 +104,7 @@ body{
 
 .header-background {
   padding: 10px;
-  color: white;
-  background-color: brown;
+  height: 150px;
   background-image: url("birdie.jpg");
   background-size: cover;
   background-repeat: no-repeat;
