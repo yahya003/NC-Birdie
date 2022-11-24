@@ -1,7 +1,7 @@
 const Header = () => {
   return (
     <div className="header-background">
-      <h1 className="mainTitle">NC Birdie</h1>
+      <h1 className="mainTitle">Birdly</h1>
     </div>
   );
 };
