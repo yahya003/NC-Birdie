@@ -114,7 +114,7 @@ nav {
   align-items: center;
   padding-top: 15px;
   padding-bottom: 15px;
-  background-image: url("birdie.jpg");
+  /* background-image: url("birdie.jpg"); */
   background-size: cover;
 }
 
