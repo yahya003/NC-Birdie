@@ -28,11 +28,16 @@ const Captured = () => {
       <h3 className="captureTitle">Birds you have captured</h3>
       <section className="all-birds">
         {birdData.map((bird, index) => {
-          return (
-            <div key={bird + index} className="all-birds">
-              <CapturedCard bird={bird} />
-            </div>
-          );
+          console.log(bird)
+          if (
+            bird.birdImage !==
+            "/static/media/emptyBird.f3797a16e0d1b452c6c3.png"
+          ){
+            return (
+              <div key={bird + index} className="all-birds">
+                <CapturedCard bird={bird} />
+              </div>
+            );}
         })}
       </section>
     </>
