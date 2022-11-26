@@ -25,10 +25,18 @@ Birdly is a mobile-first bird watcher web application which uses Artificial Inte
 - TensorFlow.js
 
 
-## To Run
+## Setup
 
-- Clone Repo
-- cd ncbirdie
-- npm i to install dependencies
-- npm start
+- First clone the repo by copying the code below into your terminal
+
+        git clone https://github.com/yahya003/birdly
+
+- Then add all the dependencies
+
+        npm install
+
+- To run the site 
+
+        npm start
+
 - Sign up to get started
